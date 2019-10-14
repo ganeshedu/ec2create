@@ -53,7 +53,7 @@ try {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
-            bat 'terraform apply tfplan -auto-approve'
+            bat 'terraform apply tfplan'
           }
         }
       }
