@@ -41,7 +41,7 @@ try {
     }
   }
   echo " entering terraform apply"
-  if (env.BRANCH_NAME == 'master') {
+  //if (env.BRANCH_NAME == 'master') {
     echo " entering terraform apply after condition check"
     // Run terraform apply
     stage('apply') {
@@ -53,7 +53,7 @@ try {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
-            bat 'terraform apply tfplan'
+            bat 'terraform apply tfplan -auto-approve'
           }
         }
       }
@@ -74,7 +74,7 @@ try {
         }
       }
     }
-  }
+  //}
   currentBuild.result = 'SUCCESS'
 }
 catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException flowError) {
