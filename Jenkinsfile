@@ -35,7 +35,7 @@ try {
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
       ]]) {
         ansiColor('xterm') {
-          bat 'terraform plan'
+          bat 'terraform plan -out=tfplan -input=false'
         }
       }
     }
