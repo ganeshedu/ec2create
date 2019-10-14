@@ -42,7 +42,7 @@ try {
   }
   echo " entering terraform apply"
   if (env.BRANCH_NAME == 'master') {
-
+    echo " entering terraform apply after condition check"
     // Run terraform apply
     stage('apply') {
       node {
