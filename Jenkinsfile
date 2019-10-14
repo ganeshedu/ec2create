@@ -19,7 +19,7 @@ try {
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
       ]]) {
         ansiColor('xterm') {
-          sh 'terraform init'
+        bat 'terraform init'
         }
       }
     }
@@ -35,7 +35,7 @@ try {
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
       ]]) {
         ansiColor('xterm') {
-          sh 'terraform plan'
+          bat 'terraform plan'
         }
       }
     }
@@ -69,7 +69,7 @@ try {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
-            sh 'terraform show'
+            bat 'terraform show'
           }
         }
       }
