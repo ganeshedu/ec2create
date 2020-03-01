@@ -22,6 +22,10 @@ variable "aws-ami" {
   default = "ami-2757f631"
 }
 
+variable "key_name" {
+  default = "cloud-test-keypair"
+}
+
 variable "instance_type" {
   default = "t2.micro"
 }

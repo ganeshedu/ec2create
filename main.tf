@@ -38,8 +38,9 @@ resource "aws_instance" "web" {
   ami           = var.aws-ami
   instance_type = var.instance_type
 
-  #vpc_id = "${aws_vpc.default.id}"
-  #subnet_id = "${var.subnet_id}"
+  #vpc_id     = "${aws_vpc.default.id}"
+  #subnet_id  = "${var.subnet_id}"
+  key_name    = var.key_name
   network_interface {
     network_interface_id = aws_network_interface.tf_interface.id
     device_index         = 0
