@@ -20,6 +20,7 @@ try {
       ]]) {
         ansiColor('xterm') {
         bat 'terraform init -input=false'
+        bat terraform version
         }
       }
     }
