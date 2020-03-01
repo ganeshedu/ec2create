@@ -1,6 +1,6 @@
 variable "aws-region" {
   description = "The aws regions to create the infrastructure"
-  default   = "us-east-1"
+  default     = "us-east-1"
 }
 
 #variable "vpc_id" {
@@ -19,12 +19,14 @@ variable "SubnetCidrBlock" {
 }
 
 variable "aws-ami" {
-  default   = "ami-2757f631"
+  default = "ami-2757f631"
 }
+
 variable "instance_type" {
-  default= "t2.micro"
+  default = "t2.micro"
 }
+
 variable "name" {
-  default= "TF-EC2-Instance"
+  default = "TF-EC2-Instance"
 }
 

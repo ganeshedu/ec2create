@@ -7,11 +7,9 @@ output "address" {
 }
 
 output "vpc_id" {
-  value = "${aws_vpc.tf_vpc.id}"
+  value = aws_vpc.tf_vpc.id
 }
 
 # utput "subnet_id" { 
 #  value = "${aws_subnet.subnet_id.id}"
 #}
-
-
