@@ -19,6 +19,7 @@ resource "aws_subnet" "tf_subnet" {
 
   #subnet_id = "${var.subnet_id}"
   cidr_block = var.SubnetCidrBlock
+  map_public_ip_on_launch = true
   tags = {
     Name = "terraform_subnet"
   }
