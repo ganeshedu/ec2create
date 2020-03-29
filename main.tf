@@ -1,3 +1,12 @@
+terraform {
+  backend "s3" {
+    bucket  = "terraform-statefiles"
+    key     = "ec2create"
+    region  = "us-east-1"
+    profile = "cloud_user"
+  }
+}
+
 # Configure the AWS Provider
 provider "aws" {
   profile = "default"
