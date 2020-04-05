@@ -89,6 +89,8 @@ if(action == 'Deploy') {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
+            bat 'terraform init -input=false'
+            bat 'terraform version'
             bat label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false"
           }
         }
