@@ -9,6 +9,8 @@ try {
     }
   }
 
+if(action == 'Deploy') { 
+
   // Run terraform init
   stage('init') {
     node {
@@ -75,6 +77,25 @@ try {
         }
       }
     }
+  }
+
+  if(action == 'Destroy') {
+    stage('plan_destroy') {
+      sh label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false"
+    }
+    stage('destroy') {
+      script {
+          timeout(time: 10, unit: 'MINUTES') {
+              input(id: "Destroy Gate", message: "Destroy environment?", ok: 'Destroy')
+          }
+      }
+      sh label: 'Destroy environment', script: "terraform apply -lock=false -input=false tfdestroyplan"
+    }
+  }
+
+
+
+
   //}
   currentBuild.result = 'SUCCESS'
 }
