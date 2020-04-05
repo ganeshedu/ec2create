@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "terraform-statefiles2"
+    bucket  = "terraform-statefiles3"
     key     = "ec2create"
     region  = "us-east-1"
     profile = "cloud_user"
