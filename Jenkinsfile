@@ -81,21 +81,46 @@ if(action == 'Deploy') {
 
   if(action == 'Destroy') {
     stage('plan_destroy') {
-      sh label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false"
+      node {
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          credentialsId: credentialsId,
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
+          ansiColor('xterm') {
+            bat label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false"
+          }
+        }
+      }
     }
+    
+    //{
+    //  sh label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false"
+    //}
+
+
     stage('destroy') {
-      script {
-          timeout(time: 10, unit: 'MINUTES') {
+            node {
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          credentialsId: credentialsId,
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
+          ansiColor('xterm') {
+          script {
+            timeout(time: 10, unit: 'MINUTES') {
               input(id: "Destroy Gate", message: "Destroy environment?", ok: 'Destroy')
           }
       }
-      sh label: 'Destroy environment', script: "terraform apply -lock=false -input=false tfdestroyplan"
+          bat label: 'Destroy environment', script: "terraform apply -lock=false -input=false tfdestroyplan"
+          }
+        }
+      }
+
     }
   }
-
-
-
-
   //}
   currentBuild.result = 'SUCCESS'
 }
